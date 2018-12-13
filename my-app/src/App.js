@@ -10,17 +10,24 @@ export default class App extends React.Component {
     };
 
     componentDidMount() {
+        this.setState({ isLoading: true });
+        
         fetch('http://localhost:3000/data/newsData.json')
             .then(Response => {
                 return Response.json();
             })
             .then(data => {
-                console.log(this);
-                console.log('my news: ', data);
+                this.setState({
+                    isLoading: false,
+                    news: data,
+                });
             })
     }
 
     handleAddNews = data => {
+        if (data.bigText.toLowerCase().indexOf('pubg') !== -1)
+            data.bigText = 'СПАМ';
+
         const nextNews = [data, ...this.state.news];
         this.setState({ news: nextNews });
     };
@@ -30,10 +37,10 @@ export default class App extends React.Component {
 
         return (
             <React.Fragment>
-                <Add onAddNews={ this.handleAddNews } />
+                <Add onAddNews={this.handleAddNews} />
                 <h3>Новости</h3>
-                { isLoading && <p>Загружаю...</p> }
-                { Array.isArray(news) && <News data={this.state.news} /> }
+                {isLoading && <p>Загружаю...</p>}
+                {Array.isArray(news) && <News data={this.state.news} />}
             </React.Fragment>
         );
     }

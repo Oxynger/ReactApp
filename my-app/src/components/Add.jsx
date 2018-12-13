@@ -12,7 +12,7 @@ export default class Add extends React.Component {
         e.preventDefault();
         const { name, text, bigText } = this.state;
         this.props.onAddNews({
-            id: +new Date(),
+            id: Date.now(),
             author: name,
             text,
             bigText
@@ -64,7 +64,7 @@ export default class Add extends React.Component {
                     onClick={this.onBtnClickHandler}
                     disabled={!this.validate()}
                 >
-                    Показать alert
+                    Добавить новость
         </button>
             </form>
         );
