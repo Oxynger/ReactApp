@@ -21,4 +21,3 @@
 /my-app/npm-debug.log*
 /my-app/yarn-debug.log*
 /my-app/yarn-error.log*
-/my-app/.eslintrc
