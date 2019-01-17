@@ -21,9 +21,9 @@ export function handleLogin() {
         dispatch({
           type: LOGIN_FAIL,
           error: true,
-          payload: new Error('Authorisation Error'),
+          payload: new Error('Ошибка авторизации'),
         })
       }
-    }, 4)
+    }, 4) // запрос прав на доступ к photo
   }
 }
