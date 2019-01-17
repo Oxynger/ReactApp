@@ -2,17 +2,22 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import User from '../components/user'
 import Page from '../components/page'
-import { setYear } from '../actions/pageAction'
+import { getPhotos } from '../actions/pageAction'
 
 class App extends Component {
   render() {
     const { name } = this.props.user
-    const { photos, year } = this.props.page
-    const { setYear } = this.props
+    const { photos, year, isFetching } = this.props.page
+    const { getPhotosAction } = this.props
 
     return (
       <div className="App">
-        <Page photos={photos} year={year} setYear={setYear} />
+        <Page
+          photos={photos}
+          year={year}
+          getPhotos={getPhotosAction}
+          isFetching={isFetching}
+        />
         <User name={name} />
       </div>
     )
@@ -21,7 +26,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setYear: year => dispatch(setYear(year)),
+    getPhotosAction: year => dispatch(getPhotos(year)),
   }
 }
 
